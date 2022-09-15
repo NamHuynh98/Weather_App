@@ -1,0 +1,64 @@
+.container {
+  position: relative;
+  min-width: 300px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.502);
+  padding: 20px;
+  box-sizing: border-box;
+  color: rgb(109, 109, 109);
+  user-select: none;
+  background-color: #ffffff;
+  border-radius: 10px;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.502);
+  }
+
+  h4 {
+    text-align: center;
+    margin-top: 0;
+    color: rgb(102, 101, 101);
+  }
+
+  img {
+    width: 100px;
+    height: 100px;
+    margin: auto;
+  }
+
+  .content {
+    margin-left: 20px;
+
+    p {
+      font-size: 15px;
+      margin: 0;
+      padding-bottom: 2px;
+
+      &:first-child {
+        border-bottom: 1px solid rgb(163, 163, 163);
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  .btnClear {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: transparent;
+    border: 1px solid gray;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    font-size: 15px;
+    line-height: 18px;
+    color: gray;
+    cursor: pointer;
+
+    &:hover {
+      color: white;
+      background-color: red;
+      border: 0px;
+    }
+  }
+}

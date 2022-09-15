@@ -1,0 +1,83 @@
+.detailContainer {
+  position: relative;
+  width: calc(100% - 40px);
+  margin-bottom: 60px;
+  background-color: #fff;
+  padding: 30px 50px;
+  box-sizing: border-box;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.432);
+}
+
+h1 {
+  margin: 0;
+}
+
+.detailInfo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 20px;
+  font-size: 15px;
+  p {
+    margin: 5px 0;
+  }
+}
+
+.degrees {
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 100px;
+    height: 100px;
+  }
+
+  span {
+    font-size: 70px;
+    margin-left: 30px;
+  }
+}
+
+.wrapperWeatherTime {
+  display: flex;
+  overflow-x: auto;
+  padding: 20px 10px;
+}
+
+.btnRedirect {
+  position: absolute;
+  bottom: -60px;
+  left: 0;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  background-color: #000a3e;
+  color: #fff;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 3px 3px 4px black;
+  cursor: pointer;
+
+  span {
+    font-size: 10px;
+    margin-right: 10px;
+  }
+
+  &:hover {
+    box-shadow: none;
+  }
+}
+
+.loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #ffffff47;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

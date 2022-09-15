@@ -1,0 +1,12 @@
+.app {
+  height: 100vh;
+  color: #6d6d6d;
+  display: grid;
+  grid-template-rows: 50px 1fr;
+}
+
+.wrapperContent {
+  width: 100vw;
+  background-color: #e7e7e7;
+  box-sizing: border-box;
+}

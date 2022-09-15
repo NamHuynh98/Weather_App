@@ -1,0 +1,45 @@
+.atomWeather {
+  width: 100px;
+  border-radius: 5px;
+  padding: 15px;
+  box-sizing: border-box;
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+
+  p {
+    margin: 5px 0;
+    &:first-child {
+      margin-top: 0;
+      margin: auto;
+    }
+    &:last-child {
+      font-weight: bold;
+    }
+  }
+  img {
+    width: 70px;
+    height: 70px;
+    margin: auto;
+  }
+
+  &:hover {
+    box-shadow: 0 0 3px;
+  }
+}
+
+.daily {
+  min-width: 130px;
+}
+
+.humidity {
+  img {
+    width: 15px;
+    height: 15px;
+    margin-left: 8px;
+  }
+  span {
+    margin-left: 5px;
+  }
+}
