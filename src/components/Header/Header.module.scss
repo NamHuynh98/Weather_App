@@ -3,7 +3,10 @@
   align-items: center;
   padding: 5px 10px;
   background-color: #000a3e;
-  text-decoration: none;
+
+  a {
+    text-decoration: none;
+  }
 
   img {
     width: 40px;
@@ -13,6 +16,6 @@
   span {
     color: #ffffff;
     font-weight: bold;
-    margin-left: 20px;
+    margin-left: 10px;
   }
 }

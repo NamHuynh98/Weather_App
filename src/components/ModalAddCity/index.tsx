@@ -30,7 +30,8 @@ const ModalAddCity: React.FC<Props> = (props) => {
             disabled={props.isLoading}
             onChange={(e) => setNameCity(e.target.value)}
             onKeyDown={(e) => {
-              if (e.key === "Enter") props.onSendCity(nameCity);
+              if (e.key === "Enter" && !props.isLoading)
+                props.onSendCity(nameCity);
             }}
             aria-label="Small"
             aria-describedby="inputGroup-sizing-sm"

@@ -4,12 +4,12 @@ import logo from "../../assets/cloudy-day.svg";
 
 const Header = () => {
   return (
-    <>
-      <a href="/dashboard" className={styles.headerContainer}>
+    <div className={styles.headerContainer}>
+      <a href="/dashboard">
         <img src={logo} alt="logo" />
         <span>Weather Online</span>
       </a>
-    </>
+    </div>
   );
 };
 

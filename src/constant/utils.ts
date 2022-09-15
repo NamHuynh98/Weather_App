@@ -1,6 +1,7 @@
 export const UNIX_TIME: number = 1000;
 export const UNIX_KELVIN: number = 273.15;
-export const NAME_CITY_DEFAULT: string = "ha noi";
+export const LAT_CITY_DEFAULT: number = 10.7758439;
+export const LON_CITY_DEFAULT: number = 106.7017555;
 
 export const kelvinToCelsius = (k: number) => {
   return (k - UNIX_KELVIN).toFixed(0);

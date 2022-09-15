@@ -9,7 +9,7 @@ import ToastComponent, { TYPE_TOAST } from "../../components/ToastComponent";
 import CardWeather from "../../components/CardWeather";
 import forecastApi, { Forecast } from "../../apis/forecastApi";
 import geolocationApi from "../../apis/geolocationApi";
-import { NAME_CITY_DEFAULT } from "../../constant/utils";
+import { LAT_CITY_DEFAULT, LON_CITY_DEFAULT } from "../../constant/utils";
 import { Button, Form, InputGroup } from "react-bootstrap";
 
 const Dashboard = () => {
@@ -84,10 +84,10 @@ const Dashboard = () => {
     listCitiesParam: string[],
     location: { lon: number; lat: number }
   ) => {
+    setIsLoading(true);
     const promises = listCitiesParam.map((item: string) =>
       weatherApi({ nameCity: item })
     );
-    setIsLoading(true);
     await Promise.all(promises)
       .then((result) => {
         localStorage.setItem("store_weathers", JSON.stringify(listCitiesParam));
@@ -97,9 +97,9 @@ const Dashboard = () => {
       .then(() => {
         forecastApi({ lon: location.lon, lat: location.lat })
           .then((data) => setForecast(data))
-          .catch(console.log);
-      })
-      .finally(() => setIsLoading(false));
+          .catch(console.log)
+          .finally(() => setIsLoading(false));
+      });
   };
 
   const onClearItem = (nameCity: string) => {
@@ -115,9 +115,37 @@ const Dashboard = () => {
 
   React.useEffect(() => {
     const store: string[] = JSON.parse(localStorage.getItem("store_weathers")!);
-    geolocationApi({ nameCity: NAME_CITY_DEFAULT }).then((data) => {
-      loadData(store || [], { lat: data.lat, lon: data.lon });
-    });
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        loadData(store || [], {
+          lat: position.coords.latitude,
+          lon: position.coords.longitude,
+        });
+      },
+      (error) => {
+        switch (error.code) {
+          case error.PERMISSION_DENIED:
+            setToastDetail({
+              type: TYPE_TOAST.DANGER,
+              msg: "User denied the request for Geolocation.",
+            });
+            break;
+          case error.POSITION_UNAVAILABLE:
+            setToastDetail({
+              type: TYPE_TOAST.DANGER,
+              msg: "Location information is unavailable.",
+            });
+            break;
+          case error.TIMEOUT:
+            setToastDetail({
+              type: TYPE_TOAST.DANGER,
+              msg: "The request to get user location timed out.",
+            });
+            break;
+        }
+        loadData(store || [], { lat: LAT_CITY_DEFAULT, lon: LON_CITY_DEFAULT });
+      }
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -139,7 +167,7 @@ const Dashboard = () => {
           disabled={isLoading}
           onChange={(e) => setSearchNameCity(e.target.value)}
           onKeyDown={(e) => {
-            if (e.key === "Enter") onSearchCity(searchNameCity);
+            if (e.key === "Enter" && !isSearching) onSearchCity(searchNameCity);
           }}
           aria-label="Small"
           aria-describedby="inputGroup-sizing-sm"
